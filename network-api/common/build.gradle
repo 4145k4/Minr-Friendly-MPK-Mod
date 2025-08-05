@@ -1,0 +1,22 @@
+plugins {
+    id 'java'
+}
+
+group = 'io.github.kurrycat2004.mpknetapi'
+version = $version
+archivesBaseName = 'common'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly 'io.netty:netty-all:4.0.23.Final'
+}
+
+compileJava {
+    sourceCompatibility = 8
+    targetCompatibility = 8
+
+    options.compilerArgs += ["-Xlint:-options"]
+}
