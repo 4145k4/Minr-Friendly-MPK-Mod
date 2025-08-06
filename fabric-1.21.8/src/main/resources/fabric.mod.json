@@ -1,13 +1,14 @@
 {
   "schemaVersion": 1,
-  "id": "mpkmod",
+  "id": "minr_mpkmod",
   "version": "${version}",
 
-  "name": "MPK Mod",
+  "name": "Minr Friendly MPK Mod",
   "description": "A Mod that adds some features that help parkour to the game.",
   "authors": [
     "kurrycat",
     "CodeKid0 (Fabric port)",
+    "zizou22 (Minr version)",
     "Contributors"
   ],
   "contact": {
