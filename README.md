@@ -1,6 +1,5 @@
 # Minr Friendly MPK Mod
 
-[![Latest Build](https://github.com/kurrycat2004/MPKMod_2/actions/workflows/gradle.yml/badge.svg)](#snapshots)
 ![](/img/banner.webp)
 
 <div align="center">
