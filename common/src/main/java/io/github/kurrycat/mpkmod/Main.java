@@ -39,13 +39,6 @@ public class Main implements MPKModule {
     )
     public static boolean displayOverlay = true;
 
-    @Option.Field(
-            category = "landingblocks",
-            displayName = "Highlight Landing Blocks - Disabled on zero.minr",
-            description = "Whether to highlight all enabled landing blocks"
-    )
-    public static boolean highlightLandingBlocks = false;
-
     @Override
     public void init() {
         infoTree = InfoString.createInfoTree();

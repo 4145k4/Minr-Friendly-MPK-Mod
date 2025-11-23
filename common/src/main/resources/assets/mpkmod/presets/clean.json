@@ -1,0 +1,257 @@
+[ {
+  "@class" : "io.github.kurrycat.mpkmod.gui.components.InfoLabel",
+  "text" : "X:",
+  "color" : "#FF5BCEFA",
+  "selectedColor" : "#64FFAA00",
+  "fontSize" : 9.0,
+  "pos" : {
+    "x" : 9.0,
+    "y" : 10.0,
+    "anchor" : "TOP_LEFT",
+    "parentAnchor" : "TOP_LEFT",
+    "percentFlag" : 0
+  }
+}, {
+  "@class" : "io.github.kurrycat.mpkmod.gui.components.InfoLabel",
+  "text" : "{pos.x,2}",
+  "color" : "#FFF5A9B8",
+  "selectedColor" : "#64FFAA00",
+  "fontSize" : 9.0,
+  "pos" : {
+    "x" : 21.0,
+    "y" : 10.0,
+    "anchor" : "TOP_LEFT",
+    "parentAnchor" : "TOP_LEFT",
+    "percentFlag" : 0
+  }
+}, {
+  "@class" : "io.github.kurrycat.mpkmod.gui.components.InfoLabel",
+  "text" : "Y:",
+  "color" : "#FF5BCEFA",
+  "selectedColor" : "#64FFAA00",
+  "fontSize" : 9.0,
+  "pos" : {
+    "x" : 9.0,
+    "y" : 20.0,
+    "anchor" : "TOP_LEFT",
+    "parentAnchor" : "TOP_LEFT",
+    "percentFlag" : 0
+  }
+}, {
+  "@class" : "io.github.kurrycat.mpkmod.gui.components.InfoLabel",
+  "text" : "{pos.y,2}",
+  "color" : "#FFF5A9B8",
+  "selectedColor" : "#64FFAA00",
+  "fontSize" : 9.0,
+  "pos" : {
+    "x" : 21.0,
+    "y" : 20.0,
+    "anchor" : "TOP_LEFT",
+    "parentAnchor" : "TOP_LEFT",
+    "percentFlag" : 0
+  }
+}, {
+  "@class" : "io.github.kurrycat.mpkmod.gui.components.InfoLabel",
+  "text" : "Z:",
+  "color" : "#FF5BCEFA",
+  "selectedColor" : "#64FFAA00",
+  "fontSize" : 9.0,
+  "pos" : {
+    "x" : 9.0,
+    "y" : 30.0,
+    "anchor" : "TOP_LEFT",
+    "parentAnchor" : "TOP_LEFT",
+    "percentFlag" : 0
+  }
+}, {
+  "@class" : "io.github.kurrycat.mpkmod.gui.components.InfoLabel",
+  "text" : "{pos.z,2}",
+  "color" : "#FFF5A9B8",
+  "selectedColor" : "#64FFAA00",
+  "fontSize" : 9.0,
+  "pos" : {
+    "x" : 21.0,
+    "y" : 30.0,
+    "anchor" : "TOP_LEFT",
+    "parentAnchor" : "TOP_LEFT",
+    "percentFlag" : 0
+  }
+}, {
+  "@class" : "io.github.kurrycat.mpkmod.gui.components.InfoLabel",
+  "text" : "Angle:",
+  "color" : "#FF5BCEFA",
+  "selectedColor" : "#64FFAA00",
+  "fontSize" : 9.0,
+  "pos" : {
+    "x" : 9.0,
+    "y" : 40.0,
+    "anchor" : "TOP_LEFT",
+    "parentAnchor" : "TOP_LEFT",
+    "percentFlag" : 0
+  }
+}, {
+  "@class" : "io.github.kurrycat.mpkmod.gui.components.InfoLabel",
+  "text" : "{yaw,2!} ({direction})",
+  "color" : "#FFF5A9B8",
+  "selectedColor" : "#64FFAA00",
+  "fontSize" : 9.0,
+  "pos" : {
+    "x" : 42.0,
+    "y" : 40.0,
+    "anchor" : "TOP_LEFT",
+    "parentAnchor" : "TOP_LEFT",
+    "percentFlag" : 0
+  }
+}, {
+  "@class" : "io.github.kurrycat.mpkmod.gui.components.KeyBindingLabel",
+  "name" : "key.forward",
+  "displayName" : "W",
+  "keyDownColor" : "#B5FFB6C1",
+  "keyUpColor" : "#47FFB6C1",
+  "selectedColor" : "#64FFAA00",
+  "size" : {
+    "x" : 21.0,
+    "y" : 21.0
+  },
+  "pos" : {
+    "x" : 32.0,
+    "y" : 8.0,
+    "anchor" : "TOP_RIGHT",
+    "parentAnchor" : "TOP_RIGHT",
+    "percentFlag" : 0
+  }
+}, {
+  "@class" : "io.github.kurrycat.mpkmod.gui.components.KeyBindingLabel",
+  "name" : "key.left",
+  "displayName" : "A",
+  "keyDownColor" : "#B5FFB6C1",
+  "keyUpColor" : "#47FFB6C1",
+  "selectedColor" : "#64FFAA00",
+  "size" : {
+    "x" : 21.0,
+    "y" : 21.0
+  },
+  "pos" : {
+    "x" : 55.0,
+    "y" : 31.0,
+    "anchor" : "TOP_RIGHT",
+    "parentAnchor" : "TOP_RIGHT",
+    "percentFlag" : 0
+  }
+}, {
+  "@class" : "io.github.kurrycat.mpkmod.gui.components.KeyBindingLabel",
+  "name" : "key.back",
+  "displayName" : "S",
+  "keyDownColor" : "#B5FFB6C1",
+  "keyUpColor" : "#47FFB6C1",
+  "selectedColor" : "#64FFAA00",
+  "size" : {
+    "x" : 21.0,
+    "y" : 21.0
+  },
+  "pos" : {
+    "x" : 32.0,
+    "y" : 31.0,
+    "anchor" : "TOP_RIGHT",
+    "parentAnchor" : "TOP_RIGHT",
+    "percentFlag" : 0
+  }
+}, {
+  "@class" : "io.github.kurrycat.mpkmod.gui.components.KeyBindingLabel",
+  "name" : "key.right",
+  "displayName" : "D",
+  "keyDownColor" : "#B5FFB6C1",
+  "keyUpColor" : "#47FFB6C1",
+  "selectedColor" : "#64FFAA00",
+  "size" : {
+    "x" : 21.0,
+    "y" : 21.0
+  },
+  "pos" : {
+    "x" : 9.0,
+    "y" : 31.0,
+    "anchor" : "TOP_RIGHT",
+    "parentAnchor" : "TOP_RIGHT",
+    "percentFlag" : 0
+  }
+}, {
+  "@class" : "io.github.kurrycat.mpkmod.gui.components.KeyBindingLabel",
+  "name" : "key.sneak",
+  "displayName" : "Shift",
+  "keyDownColor" : "#B5FFB6C1",
+  "keyUpColor" : "#47FFB6C1",
+  "selectedColor" : "#64FFAA00",
+  "size" : {
+    "x" : 31.0,
+    "y" : 21.0
+  },
+  "pos" : {
+    "x" : 9.0,
+    "y" : 55.0,
+    "anchor" : "TOP_RIGHT",
+    "parentAnchor" : "TOP_RIGHT",
+    "percentFlag" : 0
+  }
+}, {
+  "@class" : "io.github.kurrycat.mpkmod.gui.components.KeyBindingLabel",
+  "name" : "key.sprint",
+  "displayName" : "Ctrl",
+  "keyDownColor" : "#B5FFB6C1",
+  "keyUpColor" : "#47FFB6C1",
+  "selectedColor" : "#64FFAA00",
+  "size" : {
+    "x" : 32.0,
+    "y" : 21.0
+  },
+  "pos" : {
+    "x" : 44.0,
+    "y" : 55.0,
+    "anchor" : "TOP_RIGHT",
+    "parentAnchor" : "TOP_RIGHT",
+    "percentFlag" : 0
+  }
+}, {
+  "@class" : "io.github.kurrycat.mpkmod.gui.components.KeyBindingLabel",
+  "name" : "key.jump",
+  "displayName" : "Space",
+  "keyDownColor" : "#B5FFB6C1",
+  "keyUpColor" : "#47FFB6C1",
+  "selectedColor" : "#64FFAA00",
+  "size" : {
+    "x" : 67.0,
+    "y" : 21.0
+  },
+  "pos" : {
+    "x" : 9.0,
+    "y" : 79.0,
+    "anchor" : "TOP_RIGHT",
+    "parentAnchor" : "TOP_RIGHT",
+    "percentFlag" : 0
+  }
+}, {
+  "@class" : "io.github.kurrycat.mpkmod.gui.components.InfoLabel",
+  "text" : "Last Timing:",
+  "color" : "#FF5BCEFA",
+  "selectedColor" : "#64FFAA00",
+  "fontSize" : 9.0,
+  "pos" : {
+    "x" : 9.0,
+    "y" : 50.0,
+    "anchor" : "TOP_LEFT",
+    "parentAnchor" : "TOP_LEFT",
+    "percentFlag" : 0
+  }
+}, {
+  "@class" : "io.github.kurrycat.mpkmod.gui.components.InfoLabel",
+  "text" : "{lastTiming}",
+  "color" : "#FFF5A9B8",
+  "selectedColor" : "#64FFAA00",
+  "fontSize" : 9.0,
+  "pos" : {
+    "x" : 68.5,
+    "y" : 49.5,
+    "anchor" : "TOP_LEFT",
+    "parentAnchor" : "TOP_LEFT",
+    "percentFlag" : 0
+  }
+} ]

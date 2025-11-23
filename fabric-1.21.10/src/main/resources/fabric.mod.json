@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "id": "minr_mpkmod",
+  "version": "${version}",
+
+  "name": "Minr Friendly MPK Mod",
+  "description": "A Mod that adds some features that help parkour to the game.",
+  "authors": [
+    "kurrycat",
+    "CodeKid0 (Fabric port)",
+    "Exterminate",
+    "Zpiboo",
+    "zizou22 (Minr version)",
+    "Contributors"
+  ],
+  "contact": {
+    "sources": "https://github.com/kurrycat2004/MPKMod_2"
+  },
+
+  "license": "MIT",
+  "icon": "assets/mpkmod/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "main": [
+      "io.github.kurrycat.mpkmod.compatibility.fabric_1_21_9.MPKMod"
+    ]
+  },
+  "mixins": [
+    "mpkmod.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.18.1",
+    "fabric-api": "*",
+    "minecraft": ">=1.21.10",
+    "java": ">=21"
+  },
+  "suggests": {}
+}

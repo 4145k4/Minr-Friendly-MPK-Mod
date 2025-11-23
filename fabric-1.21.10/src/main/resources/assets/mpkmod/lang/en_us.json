@@ -1,0 +1,9 @@
+{
+  "key.category.minr_mpkmod.mpkmod_2": "Minr MPKMod 2",
+  "minr_mpkmod.key.main_gui.desc": "Open MPK Mod GUI",
+  "minr_mpkmod.key.lb_gui.desc": "Open Landing Block GUI",
+  "minr_mpkmod.key.lb_set.desc": "Set Landing Block",
+  "minr_mpkmod.key.options_gui.desc": "Open Options GUI",
+  "minr_mpkmod.main_gui.title": "MPK Mod GUI",
+  "minr_mpkmod.lb_gui.title": "Landing Block GUI"
+}
