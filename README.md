@@ -33,6 +33,7 @@ If you think that mpkmod should have a specific feature, encounter any bugs or i
 
 * [Fabric](https://fabricmc.net/)
     - 1.21.8
+    - 1.21.10
 
 ---
 
