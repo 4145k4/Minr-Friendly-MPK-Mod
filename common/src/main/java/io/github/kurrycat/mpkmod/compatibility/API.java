@@ -29,7 +29,7 @@ import java.time.Instant;
 import java.util.*;
 
 public class API {
-    public static final String MODID = "mpkmod";
+    public static final String MODID = "minr_mpkmod";
 
     public static final Logger LOGGER = LogManager.getLogger(MODID);
     public static final Marker DISCORD_RPC_MARKER = MarkerManager.getMarker("DISCORD_RPC");
@@ -37,9 +37,9 @@ public class API {
     public static final Marker CONFIG_MARKER = MarkerManager.getMarker("CONFIG");
     public static final MPKPacketListenerClient PACKET_LISTENER_CLIENT = new MPKPacketListenerClientImpl();
 
-    public static final String NAME = "MPK Mod";
+    public static final String NAME = "Minr MPK Mod";
     public static final String VERSION = "2.0";
-    public static final String KEYBINDING_CATEGORY = NAME;
+    public static final String KEYBINDING_CATEGORY = "mpkmod.key.category";
     public static final String packageName = "io.github.kurrycat.mpkmod";
     public static Instant gameStartedInstant;
     /**

@@ -202,10 +202,6 @@ public class InputField extends Component implements KeyInputListener, MouseInpu
         content = "";
     }
 
-    public void setWidth(double width) {
-        this.size.setX(width);
-    }
-
     @Override
     public boolean handleMouseInput(Mouse.State state, Vector2D mousePos, Mouse.Button button) {
         if (button == Mouse.Button.LEFT) {
