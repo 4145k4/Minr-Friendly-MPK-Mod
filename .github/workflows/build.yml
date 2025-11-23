@@ -58,7 +58,7 @@ jobs:
       run: echo "NOW=$(date +'%Y%m%d-%H%M%S')" >> $GITHUB_ENV
 
     - name: Upload jars artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v5
       with:
         name: mpkmod.${{ env.NOW }}
         path: build/libs/*.jar
