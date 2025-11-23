@@ -109,6 +109,10 @@ public class Minecraft {
         return Interface.get().map(Interface::isF3Enabled).orElse(false);
     }
 
+    public static boolean isF1Enabled() {
+        return Interface.get().map(Interface::isF1Enabled).orElse(false);
+    }
+
     public enum WorldState {
         MENU,
         SINGLE_PLAYER,
@@ -141,6 +145,8 @@ public class Minecraft {
         boolean setInputs(Float yaw, boolean relYaw, Float pitch, boolean relPitch, int pressedInputs, int releasedInputs, int L, int R);
 
         boolean isF3Enabled();
+
+        boolean isF1Enabled();
 
         void sendPacket(MPKPacket packet);
     }
