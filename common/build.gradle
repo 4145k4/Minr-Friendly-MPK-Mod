@@ -1,8 +1,11 @@
 apply plugin: 'maven-publish'
 
-group = $group
-version = $version
-archivesBaseName = $commonBaseName
+group = project.group
+version = project.version
+
+base {
+    archivesName = commonBaseName
+}
 
 dependencies {
     compileOnly 'org.apache.logging.log4j:log4j-api:2.0-beta9'
@@ -12,7 +15,7 @@ dependencies {
 }
 
 compileJava.doLast {
-    var classFile = new File("$temporaryDir${File.separator}classes.txt")
+    def classFile = new File("${temporaryDir}${File.separator}classes.txt")
     classFile.createNewFile()
 
     classFile.text = sourceSets.main.output.classesDirs.asFileTree
@@ -34,9 +37,9 @@ java {
 publishing {
     publications {
         maven(MavenPublication) {
-            groupId $jitpackGroup
-            artifactId $modBaseName + "-api"
-            version $apiVersion
+            groupId = jitpackGroup
+            artifactId = "${modBaseName}-api"
+            version = apiVersion
             from components.java
         }
     }

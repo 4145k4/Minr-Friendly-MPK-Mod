@@ -1,5 +1,6 @@
 package io.github.kurrycat.mpkmod.compatibility.fabric_1_21_9;
 
+
 import io.github.kurrycat.mpkmod.compatibility.API;
 import io.github.kurrycat.mpkmod.compatibility.MCClasses.Player;
 import io.github.kurrycat.mpkmod.compatibility.fabric_1_21_9.mixin.KeyBindingAccessor;
@@ -18,6 +19,7 @@ import net.minecraft.client.option.GameOptions;
 import net.minecraft.client.render.RenderTickCounter;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.client.render.Camera;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
@@ -77,7 +79,10 @@ public class EventHandler {
     public void onRenderWorldOverlay(MatrixStack matrixStack, float tickDelta) {
         MPKMod.INSTANCE.matrixStack = matrixStack;
         matrixStack.push();
-        Vec3d pos = MinecraftClient.getInstance().gameRenderer.getCamera().getPos().negate();
+        Camera camera = MinecraftClient.getInstance().gameRenderer.getCamera();
+        Vec3d cameraPos = camera.getCameraPos();
+        Vec3d pos = cameraPos.negate();  
+
         MPKMod.INSTANCE.matrixStack.translate(pos);
         API.Events.onRenderWorldOverlay(tickDelta);
         matrixStack.pop();

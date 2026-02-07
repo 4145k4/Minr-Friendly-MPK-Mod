@@ -26,8 +26,8 @@ public class MPKGuiScreen extends Screen {
     }
 
     @Override
-    public void resize(MinecraftClient client, int width, int height) {
-        super.resize(client, width, height);
+    public void resize(int width, int height) {
+        super.resize(width, height);
         eventReceiver.onResize(width, height);
     }
 

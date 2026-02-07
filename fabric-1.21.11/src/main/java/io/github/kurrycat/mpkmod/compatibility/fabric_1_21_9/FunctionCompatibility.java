@@ -4,6 +4,7 @@ import com.mojang.blaze3d.pipeline.RenderPipeline;
 import com.mojang.blaze3d.systems.RenderSystem;
 import io.github.kurrycat.mpkmod.compatibility.MCClasses.*;
 import io.github.kurrycat.mpkmod.compatibility.fabric_1_21_9.mixin.KeyBindingAccessor;
+import io.github.kurrycat.mpkmod.compatibility.fabric_1_21_9.mixin.RenderLayerAccessor;
 import io.github.kurrycat.mpkmod.compatibility.fabric_1_21_9.network.DataCustomPayload;
 import io.github.kurrycat.mpkmod.gui.MPKGuiScreen;
 import io.github.kurrycat.mpkmod.util.BoundingBox3D;
@@ -25,8 +26,8 @@ import net.minecraft.client.network.ServerInfo;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.RenderSetup;
 import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.render.VertexRendering;
 import net.minecraft.client.sound.PositionedSoundInstance;
 import net.minecraft.client.texture.TextureSetup;
 import net.minecraft.registry.Registries;
@@ -38,6 +39,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.profiler.Profilers;
 import org.jetbrains.annotations.Nullable;
+
+import org.joml.Matrix4f;
 
 import java.awt.*;
 import java.util.*;
@@ -53,6 +56,10 @@ public class FunctionCompatibility implements FunctionHolder,
         Keyboard.Interface,
         Profiler.Interface {
     public static final Set<Integer> pressedButtons = new HashSet<>();
+    private static final RenderLayer FILLED_BOX_LAYER = RenderLayerAccessor.invokeOf(
+            "mpkmod_filled_box",
+            RenderSetup.builder(RenderPipelines.DEBUG_FILLED_BOX).build()
+    );
     public DrawContext drawContext = null;
 
     public void playButtonSound() {
@@ -132,8 +139,6 @@ public class FunctionCompatibility implements FunctionHolder,
     public void drawBox(BoundingBox3D bb, Color color, float partialTicks) {
         int r = color.getRed(), g = color.getGreen(), b = color.getBlue(), a = color.getAlpha();
 
-        RenderSystem.lineWidth(1.0F);
-
         float minX = (float) bb.minX();
         float minY = (float) bb.minY();
         float minZ = (float) bb.minZ();
@@ -141,13 +146,46 @@ public class FunctionCompatibility implements FunctionHolder,
         float maxY = (float) bb.maxY();
         float maxZ = (float) bb.maxZ();
 
-        VertexRendering.drawFilledBox(
-                MPKMod.INSTANCE.matrixStack,
-                MinecraftClient.getInstance().getBufferBuilders().getEntityVertexConsumers().getBuffer(RenderLayer.getDebugFilledBox()),
-                minX, minY, minZ,
-                maxX, maxY, maxZ,
-                r / 255f, g / 255f, b / 255f, a / 255f
-        );
+        VertexConsumer consumer = MinecraftClient.getInstance().getBufferBuilders()
+                .getEntityVertexConsumers().getBuffer(FILLED_BOX_LAYER);
+        Matrix4f matrix = MPKMod.INSTANCE.matrixStack.peek().getPositionMatrix();
+        float rf = r / 255f, gf = g / 255f, bf = b / 255f, af = a / 255f;
+
+        // Front face (+Z)
+        consumer.vertex(matrix, minX, minY, maxZ).color(rf, gf, bf, af);
+        consumer.vertex(matrix, maxX, minY, maxZ).color(rf, gf, bf, af);
+        consumer.vertex(matrix, maxX, maxY, maxZ).color(rf, gf, bf, af);
+        consumer.vertex(matrix, minX, maxY, maxZ).color(rf, gf, bf, af);
+
+        // Back face (-Z)
+        consumer.vertex(matrix, maxX, minY, minZ).color(rf, gf, bf, af);
+        consumer.vertex(matrix, minX, minY, minZ).color(rf, gf, bf, af);
+        consumer.vertex(matrix, minX, maxY, minZ).color(rf, gf, bf, af);
+        consumer.vertex(matrix, maxX, maxY, minZ).color(rf, gf, bf, af);
+
+        // Left face (-X)
+        consumer.vertex(matrix, minX, minY, minZ).color(rf, gf, bf, af);
+        consumer.vertex(matrix, minX, minY, maxZ).color(rf, gf, bf, af);
+        consumer.vertex(matrix, minX, maxY, maxZ).color(rf, gf, bf, af);
+        consumer.vertex(matrix, minX, maxY, minZ).color(rf, gf, bf, af);
+
+        // Right face (+X)
+        consumer.vertex(matrix, maxX, minY, maxZ).color(rf, gf, bf, af);
+        consumer.vertex(matrix, maxX, minY, minZ).color(rf, gf, bf, af);
+        consumer.vertex(matrix, maxX, maxY, minZ).color(rf, gf, bf, af);
+        consumer.vertex(matrix, maxX, maxY, maxZ).color(rf, gf, bf, af);
+
+        // Top face (+Y)
+        consumer.vertex(matrix, minX, maxY, maxZ).color(rf, gf, bf, af);
+        consumer.vertex(matrix, maxX, maxY, maxZ).color(rf, gf, bf, af);
+        consumer.vertex(matrix, maxX, maxY, minZ).color(rf, gf, bf, af);
+        consumer.vertex(matrix, minX, maxY, minZ).color(rf, gf, bf, af);
+
+        // Bottom face (-Y)
+        consumer.vertex(matrix, minX, minY, minZ).color(rf, gf, bf, af);
+        consumer.vertex(matrix, maxX, minY, minZ).color(rf, gf, bf, af);
+        consumer.vertex(matrix, maxX, minY, maxZ).color(rf, gf, bf, af);
+        consumer.vertex(matrix, minX, minY, maxZ).color(rf, gf, bf, af);
     }
 
     /**
