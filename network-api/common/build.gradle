@@ -3,8 +3,11 @@ plugins {
 }
 
 group = 'io.github.kurrycat2004.mpknetapi'
-version = $version
-archivesBaseName = 'common'
+version = project.version
+
+base {
+    archivesName = 'common'
+}
 
 repositories {
     mavenCentral()

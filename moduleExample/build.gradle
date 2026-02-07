@@ -4,9 +4,12 @@ plugins {
     id 'java'
 }
 
-group = $group
-version = $version
-archivesBaseName = $moduleName
+group = project.group
+version = project.version
+
+base {
+    archivesName = moduleName
+}
 
 tasks.withType(JavaCompile) {
     sourceCompatibility = '1.8'
@@ -30,14 +33,14 @@ dependencies {
     implementation 'com.github.kurrycat2004:mpkmod-api:1.0'
 }
 
-//ill maybe make a gradle plugin for this but for now this works
+// ill maybe make a gradle plugin for this but for now this works
 jar {
-    var config = file("$temporaryDir/mpkmodule.config.json")
-    var jsonBuilder = new JsonBuilder()
+    def config = file("${temporaryDir}/mpkmodule.config.json")
+    def jsonBuilder = new JsonBuilder()
 
     jsonBuilder {
-        moduleName $moduleName
-        mainClass $mainClass
+        moduleName moduleName
+        mainClass mainClass
     }
 
     config.text = jsonBuilder.toPrettyString()
@@ -54,7 +57,7 @@ tasks.register("buildAndMove") {
         if (!project.hasProperty("dir")) {
             println "Argument -Pdir missing, please provide Minecraft mods folder path"
         } else {
-            for(String s : project.property("dir").split(";")) {
+            for (String s : project.property("dir").split(";")) {
                 copy {
                     from "${buildDir}/libs"
                     into file(s)

@@ -10,7 +10,8 @@
       "KeyBindingAccessor",
       "KeyboardMixin",
       "MinecraftClientMixin",
-      "MouseMixin"
+      "MouseMixin",
+      "RenderLayerAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

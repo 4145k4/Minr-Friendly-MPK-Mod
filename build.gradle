@@ -5,9 +5,12 @@ configure(
 ) {
     apply plugin: 'java'
 
-    group = $group
-    version = $version
-    archivesBaseName = $modBaseName
+    group = project.group
+    version = project.version
+
+    base {
+        archivesName = modBaseName
+    }
 
     configurations {
         library
@@ -49,14 +52,15 @@ configure(
     jar {
         manifest {
             attributes([
-                    "Specification-Title"     : $modBaseName,
-                    "Specification-Vendor"    : $vendor,
-                    "Specification-Version"   : "1", // We are version 1 of ourselves
-                    "Implementation-Title"    : $modBaseName,
-                    "Implementation-Version"  : $version,
-                    "Implementation-Vendor"   : $vendor,
-                    "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        "Specification-Title"     : modBaseName,
+        "Specification-Vendor"    : vendor,
+        "Specification-Version"   : "1",
+        "Implementation-Title"    : modBaseName,
+        "Implementation-Version"  : project.version,
+        "Implementation-Vendor"   : vendor,
+        "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
             ])
+
         }
 
         if (project.name != "common" && project.name != "network-api") {
