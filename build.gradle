@@ -7,7 +7,9 @@ configure(
 
     group = $group
     version = $version
-    archivesBaseName = $modBaseName
+    tasks.withType(Jar).configureEach {
+        archiveBaseName.set("${$modBaseName}")
+    }
 
     configurations {
         library
@@ -107,11 +109,22 @@ configure(
     if (project.name != "common" && project.name != "network-api") {
         project.afterEvaluate {
 
-            remapJar {
-                inputFile.set project.jar.archiveFile
-                destinationDirectory = file("${rootProject.buildDir}/libs")
-                dependsOn project.jar
-                archiveFileName = project.jar.archiveFileName
+            if (project.tasks.findByName('remapJar')) {
+                remapJar {
+                    inputFile.set project.jar.archiveFile
+                    destinationDirectory = file("${rootProject.buildDir}/libs")
+                    dependsOn project.jar
+                    archiveFileName = project.jar.archiveFileName
+                }
+            } else {
+                jar {
+                    doLast {
+                        copy {
+                            from archiveFile.get().asFile
+                            into "${rootProject.buildDir}/libs"
+                        }
+                    }
+                }
             }
 
             // Fix unimined runs bug

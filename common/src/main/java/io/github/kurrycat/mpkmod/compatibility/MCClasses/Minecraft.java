@@ -4,7 +4,7 @@ import io.github.kurrycat.mpkmod.compatibility.API;
 import io.github.kurrycat.mpkmod.events.Event;
 import io.github.kurrycat.mpkmod.gui.MPKGuiScreen;
 import io.github.kurrycat.mpkmod.gui.infovars.InfoString;
-import io.github.kurrycat.mpkmod.ticks.TickInput;
+import io.github.kurrycat.mpkmod.util.input.TickInput;
 import io.github.kurrycat.mpknetapi.common.network.packet.MPKPacket;
 
 import java.text.SimpleDateFormat;
@@ -15,8 +15,11 @@ import java.util.Optional;
 @InfoString.AccessInstance
 public class Minecraft {
     public static String version;
+    public static String vfpVersion = null;
     public static WorldState worldState = WorldState.MENU;
     public static PlayState playState = PlayState.ACTIVE;
+    public static boolean sprintToggled = false;
+    public static int ping = -1;
 
     @InfoString.Getter
     public static String getIp() {
@@ -41,8 +44,16 @@ public class Minecraft {
     }
 
     @InfoString.Getter
+    public static int getPing() {
+        return Interface.get().map(Interface::getPing).orElseGet(() -> {
+            API.LOGGER.info(API.COMPATIBILITY_MARKER, "Failed to get Ping, are you playing on an unsupported minecraft version?");
+            return -1;
+        });
+    }
+
+    @InfoString.Getter
     public static String getMcVersion() {
-        return version;
+        return vfpVersion == null ? version : vfpVersion + " (VFP)";
     }
 
     @InfoString.Getter
@@ -97,7 +108,7 @@ public class Minecraft {
     }
 
     public static boolean setInputs(Float yaw, boolean relYaw, Float pitch, boolean relPitch, int pressedInputs, int releasedInputs, int L, int R) {
-        if (!io.github.kurrycat.mpkmod.compatibility.MCClasses.Minecraft.isSingleplayer()) return false;
+        if (!Minecraft.isSingleplayer()) return false;
         if (!Interface.get().isPresent()) {
             API.LOGGER.info(API.COMPATIBILITY_MARKER, "Failed to set inputs, are you playing on an unsupported minecraft version?");
             return false;
@@ -109,16 +120,21 @@ public class Minecraft {
         return Interface.get().map(Interface::isF3Enabled).orElse(false);
     }
 
-    public static boolean isF1Enabled() {
-        return Interface.get().map(Interface::isF1Enabled).orElse(false);
+    @InfoString.Getter
+    public static boolean isSprintToggled() {
+        return sprintToggled;
     }
+
+    public static void toggleSprint() {
+        sprintToggled = !sprintToggled;
+    }
+
 
     public enum WorldState {
         MENU,
         SINGLE_PLAYER,
         MULTI_PLAYER;
     }
-
 
     public enum PlayState {
         ACTIVE,
@@ -134,6 +150,8 @@ public class Minecraft {
 
         String getFPS();
 
+        int getPing();
+
         void displayGuiScreen(MPKGuiScreen screen);
 
         String getCurrentGuiScreen();
@@ -145,8 +163,6 @@ public class Minecraft {
         boolean setInputs(Float yaw, boolean relYaw, Float pitch, boolean relPitch, int pressedInputs, int releasedInputs, int L, int R);
 
         boolean isF3Enabled();
-
-        boolean isF1Enabled();
 
         void sendPacket(MPKPacket packet);
     }

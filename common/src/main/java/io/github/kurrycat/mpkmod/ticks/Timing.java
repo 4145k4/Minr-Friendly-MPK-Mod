@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import io.github.kurrycat.mpkmod.compatibility.API;
 import io.github.kurrycat.mpkmod.util.MathUtil;
 import io.github.kurrycat.mpkmod.util.Tuple;
+import io.github.kurrycat.mpkmod.util.input.InputPredicateReference;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,21 +14,53 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Timing {
+public final class Timing {
     private final LinkedHashMap<FormatCondition, FormatString> format;
     private final TimingEntry[] timingEntries;
+    private final boolean symmetrical;
+    private final Timing mirrored;
 
     @JsonCreator
-    public Timing(@JsonProperty("format") LinkedHashMap<FormatCondition, FormatString> format, @JsonProperty("timingEntries") TimingEntry[] timingEntries) {
+    public Timing(
+            @JsonProperty("format")
+            LinkedHashMap<FormatCondition, FormatString> format,
+            @JsonProperty("timingEntries")
+            TimingEntry[] timingEntries,
+            @JsonProperty("symmetrical")
+            Boolean symmetrical
+    ) {
+        if (symmetrical == null) symmetrical = false;
+
         this.format = format;
         this.timingEntries = timingEntries;
+        this.symmetrical = symmetrical;
+
+        this.mirrored = this.symmetrical ? makeMirrored() : null;
+
+        for (TimingEntry e : timingEntries) {
+            if (e.inputPredicate instanceof InputPredicateReference)
+                ((InputPredicateReference) e.inputPredicate).setParentTimingEntries(timingEntries);
+        }
+    }
+
+    public boolean isSymmetrical() {
+        return symmetrical;
+    }
+
+    public Timing getMirrored() {
+        return mirrored;
     }
 
     public Match match(List<TimingInput> inputList) {
         Match result = null;
         for (int i = 0; i < inputList.size() - 1; i++) {
             if (inputList.get(i).isStopTick() && !inputList.get(i + 1).isStopTick()) {
-                Match match = startsWithMatch(inputList.subList(i + 1, inputList.size()));
+                List<TimingInput> inputSubList = inputList.subList(i + 1, inputList.size());
+                Match match = startsWithMatch(inputSubList);
+
+                if (match == null && isSymmetrical())
+                    match = getMirrored().startsWithMatch(inputSubList);
+
                 if (match != null)
                     result = match;
             }
@@ -51,6 +84,14 @@ public class Timing {
 
         //System.out.printf("Match: %s\nVars: %s\n\n", inputList, vars);
         return new Match(getFormatString(vars), vars.size(), inputList.size() - startIndex);
+    }
+
+    private Timing makeMirrored() {
+        TimingEntry[] mirroredTimingEntries = new TimingEntry[timingEntries.length];
+        for (int i = 0; i < timingEntries.length; i++) {
+            mirroredTimingEntries[i] = timingEntries[i].mirrored();
+        }
+        return new Timing(format, mirroredTimingEntries, false);
     }
 
     private String getFormatString(HashMap<String, TickMS> vars) {
