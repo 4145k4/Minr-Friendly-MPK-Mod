@@ -31,7 +31,7 @@ If you think that mpkmod should have a specific feature, encounter any bugs or i
 ### Supported versions
 
 * [Fabric](https://fabricmc.net/)
-    - 26.1
+    - 26.2
 
 I aim to keep the mod updated for the latest version of minecraft. <br>
 To use the mod with other versions please check out the [ViaFabricPlus](https://github.com/ViaVersion/ViaFabricPlus) project.
