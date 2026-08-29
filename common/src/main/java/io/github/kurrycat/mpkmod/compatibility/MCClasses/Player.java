@@ -32,7 +32,7 @@ public class Player {
     @InfoString.Field
     public Blip lastBlip = null;
 
-    public TimingInput timingInput = new TimingInput("");
+    public TimingInput timingInput = TimingInput.stopTick();
     public KeyInput keyInput = null;
     public ButtonMSList keyMSList = null;
     public Vector3D pos = null;
@@ -41,6 +41,7 @@ public class Player {
     public Float truePitch = null;
     public Vector3D motion = null;
     public boolean onGround = false;
+    public Float preturn = null;
     public Float deltaYaw = null;
     public Float deltaPitch = null;
     public int[] deltaMouseX = null;
@@ -185,6 +186,11 @@ public class Player {
                         (keyInput.sneak ? "N" : "") +
                         (keyInput.jump ? "J" : "")
                 );
+    }
+
+    @InfoString.Getter
+    public Float getPreturn() {
+        return preturn == null ? 0 : preturn;
     }
 
     @InfoString.Getter
@@ -343,6 +349,14 @@ public class Player {
             wadStart = false;
         }
 
+        Player pprev = prev.getPrevious();
+        if (pprev == null) {
+            Player.updateDisplayInstance();
+            return this;
+        }
+
+        preturn = jumpTick ? pprev.deltaYaw : prev.preturn;
+
         Player.updateDisplayInstance();
         return this;
     }
@@ -385,13 +399,9 @@ public class Player {
         return tickHistory.get(i - 1);
     }
 
+    @InfoString.Getter
     public BoundingBox3D getBoundingBox() {
         return boundingBox;
-    }
-
-    @InfoString.Getter
-    public Vector3D getBoundingBoxSize() {
-        return boundingBox.getSize();
     }
 
     public Player setBoundingBox(BoundingBox3D boundingBox) {
@@ -411,10 +421,6 @@ public class Player {
 
     public BoundingBox3D getLastBoundingBox() {
         return getPrevious().getBoundingBox();
-    }
-
-    public Vector3D getLastBoundingBoxSize() {
-        return getLastBoundingBox().getSize();
     }
 
     @InfoString.Getter

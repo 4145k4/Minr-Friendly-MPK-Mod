@@ -25,5 +25,5 @@ include("common")
 include("network-api:common")
 
 if (System.getenv("JITPACK") == null) {
-    include("fabric-1.21.10")
+    include("fabric-26.2")
 }

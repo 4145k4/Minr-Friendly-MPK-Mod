@@ -3,8 +3,8 @@ package io.github.kurrycat.mpkmod;
 import io.github.kurrycat.mpkmod.compatibility.API;
 import io.github.kurrycat.mpkmod.compatibility.MCClasses.*;
 import io.github.kurrycat.mpkmod.discord.DiscordRPC;
-import io.github.kurrycat.mpkmod.events.Event;
 import io.github.kurrycat.mpkmod.events.*;
+import io.github.kurrycat.mpkmod.events.Event;
 import io.github.kurrycat.mpkmod.gui.TickThread;
 import io.github.kurrycat.mpkmod.gui.components.Component;
 import io.github.kurrycat.mpkmod.gui.components.InputHistory;
@@ -19,7 +19,10 @@ import io.github.kurrycat.mpkmod.landingblock.LandingBlock;
 import io.github.kurrycat.mpkmod.modules.MPKModule;
 import io.github.kurrycat.mpkmod.modules.ModuleManager;
 import io.github.kurrycat.mpkmod.ticks.TimingStorage;
-import io.github.kurrycat.mpkmod.util.*;
+import io.github.kurrycat.mpkmod.util.BoundingBox3D;
+import io.github.kurrycat.mpkmod.util.ItrUtil;
+import io.github.kurrycat.mpkmod.util.MathUtil;
+import io.github.kurrycat.mpkmod.util.Vector2D;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -38,6 +41,13 @@ public class Main implements MPKModule {
             description = "Whether to show all the components on the overlay while playing"
     )
     public static boolean displayOverlay = true;
+
+    @Option.Field(
+            category = "debug",
+            displayName = "Copy Position Shortcut",
+            description = "Whether to override the vanilla F3+C shortcut to copy your precise position"
+    )
+    public static boolean copyPositionShortcutEnabled = true;
 
     @Override
     public void init() {
@@ -63,6 +73,8 @@ public class Main implements MPKModule {
         );
 
         API.registerGUIScreen("options_gui", new OptionsGuiScreen());
+
+        API.registerKeyBinding("togglesprint", Minecraft::toggleSprint);
     }
 
     @Override
@@ -93,6 +105,8 @@ public class Main implements MPKModule {
                                 ModuleManager.reloadAllModules();
                             }
                         } else if (event.keyCode == InputConstants.KEY_C) {
+                            if (!copyPositionShortcutEnabled) return;
+
                             if (Player.getLatest() == null) return;
                             Player p = Player.getLatest();
                             Minecraft.copyToClipboard(
@@ -106,8 +120,8 @@ public class Main implements MPKModule {
                     }
                 }, Event.EventType.KEY_INPUT));
 
-        EventAPI.addListener(EventAPI.EventListener.onTickStart(e -> API.tickTime++));
-        EventAPI.addListener(EventAPI.EventListener.onTickStart(e -> {
+        EventAPI.addListener(EventAPI.EventListener.onTickEnd(e -> API.tickTime++));
+        EventAPI.addListener(EventAPI.EventListener.onTickEnd(e -> {
             TickThread.setTickables(
                     ItrUtil.getAllOfType(TickThread.Tickable.class, mainGUI.movableComponents)
             );
