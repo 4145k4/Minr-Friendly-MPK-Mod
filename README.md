@@ -41,7 +41,7 @@ To use the mod with other versions please check out the [ViaFabricPlus](https://
 ### Installation
 
 Download the .jar file from https://github.com/4145k4/Minr-Friendly-MPK-Mod/releases/tag/26.2. <br>
-Then move the mod file (`minr-mpkmod-2.0-fabric-1.21.8.jar`) into your [.minecraft](https://minecraft.wiki/w/.minecraft)/mods folder and start the game to use it. <br>
+Then move the mod file (`minr-mpkmod-2.3.3-fabric-26.2`) into your [.minecraft](https://minecraft.wiki/w/.minecraft)/mods folder and start the game to use it. <br>
 
 ---
 
