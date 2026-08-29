@@ -31,7 +31,7 @@ If you think that mpkmod should have a specific feature, encounter any bugs or i
 ### Supported versions
 
 * [Fabric](https://fabricmc.net/)
-    - 26.1
+    - 26.2
 
 I aim to keep the mod updated for the latest version of minecraft. <br>
 To use the mod with other versions please check out the [ViaFabricPlus](https://github.com/ViaVersion/ViaFabricPlus) project.
@@ -40,7 +40,7 @@ To use the mod with other versions please check out the [ViaFabricPlus](https://
 
 ### Installation
 
-Download the .jar file from https://github.com/4145k4/Minr-Friendly-MPK-Mod/releases/tag/1.21.8. <br>
+Download the .jar file from https://github.com/4145k4/Minr-Friendly-MPK-Mod/releases/tag/26.2. <br>
 Then move the mod file (`minr-mpkmod-2.0-fabric-1.21.8.jar`) into your [.minecraft](https://minecraft.wiki/w/.minecraft)/mods folder and start the game to use it. <br>
 
 ---

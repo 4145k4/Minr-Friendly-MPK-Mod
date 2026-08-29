@@ -28,7 +28,7 @@ public class MPKMod implements ModInitializer {
     public static Map<String, net.minecraft.client.KeyMapping> keyBindingMap = new HashMap<>();
     public final EventHandler eventHandler = new EventHandler();
     public PoseStack matrixStack;
-    public static final Category KEYBINDING_CATEGORY = Category.register(Identifier.fromNamespaceAndPath(API.MODID, "mpkmod_2"));
+    public static final Category KEYBINDING_CATEGORY = Category.register(Identifier.fromNamespaceAndPath(API.MODID, "minr_mpkmod_2"));
 
     @Override
     public void onInitialize() {
