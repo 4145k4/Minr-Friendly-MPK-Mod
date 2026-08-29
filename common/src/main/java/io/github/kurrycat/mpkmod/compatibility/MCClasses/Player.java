@@ -144,7 +144,7 @@ public class Player {
             case 0: return "S";
             case 1: return "SW";
             case 2: return "W";
-            case 3: return "NE";
+            case 3: return "NW";
             case 4: return "N";
             case 5: return "NE";
             case 6: return "E";

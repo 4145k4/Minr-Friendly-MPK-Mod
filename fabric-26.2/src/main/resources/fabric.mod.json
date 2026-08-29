@@ -2,12 +2,7 @@
   "schemaVersion": 1,
   "id": "minr_mpkmod",
   "version": "${version}",
-<<<<<<<< HEAD:fabric-1.21.10/src/main/resources/fabric.mod.json
-
   "name": "Minr Friendly MPK Mod",
-========
-  "name": "MPK Mod",
->>>>>>>> upstream/master:fabric-26.2/src/main/resources/fabric.mod.json
   "description": "A Mod that adds some features that help parkour to the game.",
   "authors": [
     "kurrycat",
@@ -25,32 +20,21 @@
   "environment": "client",
   "entrypoints": {
     "main": [
-<<<<<<<< HEAD:fabric-1.21.10/src/main/resources/fabric.mod.json
-      "io.github.kurrycat.mpkmod.compatibility.fabric_1_21_9.MPKMod"
-========
-        "io.github.kurrycat.mpkmod.compatibility.fabric_26_2.MPKMod"
+      "io.github.kurrycat.mpkmod.compatibility.fabric_26_2.MPKMod"
     ],
     "modmenu": [
       "io.github.kurrycat.mpkmod.compatibility.fabric_26_2.MPKModMenu"
->>>>>>>> upstream/master:fabric-26.2/src/main/resources/fabric.mod.json
     ]
   },
   "mixins": [
     "mpkmod.mixins.json"
   ],
-  "accessWidener" : "mpkmod.classtweaker",
+  "accessWidener": "mpkmod.classtweaker",
   "depends": {
-<<<<<<<< HEAD:fabric-1.21.10/src/main/resources/fabric.mod.json
-    "fabricloader": ">=0.18.1",
-    "fabric-api": "*",
-    "minecraft": ">=1.21.10",
-    "java": ">=21"
-========
     "fabricloader": ">=0.19.3",
     "fabric-api": "*",
     "minecraft": ">=26.2",
     "java": ">=25"
->>>>>>>> upstream/master:fabric-26.2/src/main/resources/fabric.mod.json
   },
   "suggests": {}
 }

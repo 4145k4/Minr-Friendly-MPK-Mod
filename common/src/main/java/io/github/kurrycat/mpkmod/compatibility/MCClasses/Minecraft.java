@@ -164,8 +164,6 @@ public class Minecraft {
 
         boolean isF3Enabled();
 
-        boolean isF1Enabled();
-
         void sendPacket(MPKPacket packet);
     }
 }
