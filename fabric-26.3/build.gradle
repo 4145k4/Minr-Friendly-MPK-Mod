@@ -24,8 +24,6 @@ dependencies {
 
     compileOnly "com.viaversion:viafabricplus-api:5.1.1"
     compileOnly "com.terraformersmc:modmenu:21.0.0"
-
-    implementation "com.github.MPKMod.MPKNetworkAPI:common:${project.networkApiVersion}"
 }
 
 processResources {
