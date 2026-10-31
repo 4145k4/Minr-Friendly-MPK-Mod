@@ -25,13 +25,6 @@ public class Settings {
             false
     );
 
-    public static BooleanSetting highlightLandingBlocks = new BooleanSetting(
-            "highlightLandingBlocks",
-            "Highlight Landing Blocks",
-            "Whether to highlight all enabled landing blocks",
-            true
-    );
-
     public static BooleanSetting copyPositionShortcutEnabled = new BooleanSetting(
             "copyPositionShortcutEnabled",
             "Copy Position Shortcut",
